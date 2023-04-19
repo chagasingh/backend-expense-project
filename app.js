@@ -1,4 +1,4 @@
-const path = require('path');
+
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
@@ -10,11 +10,11 @@ const sequelize = require('./util/database');
 app.use(cors());
 app.use(express.json());
 
-const expenseRoutes = require('./routes/expense')
+const inventoryRoutes = require('./routes/item')
 app.use(bodyParser.urlencoded({extended:true}));
 
 //show all the routes of one page
-app.use(expenseRoutes)
+app.use(inventoryRoutes)
 
 
 sequelize
