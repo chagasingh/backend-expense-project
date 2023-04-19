@@ -38,9 +38,16 @@ exports.deleteUser = async (req,res,next) => {
             console.log('ID is missing.....');
             res.status(404).json({err : 'ID is missing...'})
         }
+        let newQuantity;
+        const amount = req.body.amount;
+        const name = req.body.name;
+        const description = req.body.description;
+        const quantity = req.body.quantity;
         const uId = req.params.id;
-        await Item.destroy({where:{id:uId}})
-        res.sendStatus(200);
+        newQuantity = quantity-1
+        // await Item.destroy({where:{id:uId},})
+        const data = await Item.create({ amount:amount,name:name,description:description,quantity:newQuantity })
+        res.status(201).json({newUserDetails : data}) 
     }catch(err){
         console.log(err)
         res.sendStatus(500).json(err)
